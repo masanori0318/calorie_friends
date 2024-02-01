@@ -1,10 +1,5 @@
-class UsersController < ApplicationController
-
+class CalculationsController < ApplicationController
   def index
-    
-  end
-
-  def edit
   end
 
   def calculate_bmr
@@ -24,3 +19,4 @@ class UsersController < ApplicationController
     render json: { bmr: bmr }
   end
 end
+
