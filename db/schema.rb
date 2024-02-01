@@ -10,7 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_31_134231) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_31_135548) do
+  create_table "calories", charset: "utf8", force: :cascade do |t|
+    t.integer "breakfast_cal", null: false
+    t.integer "lunch_cal", null: false
+    t.integer "dinner_cal", null: false
+    t.integer "snack_cal", null: false
+    t.integer "total_calorie", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_calories_on_user_id"
+  end
+
+  create_table "images", charset: "utf8", force: :cascade do |t|
+    t.string "breakfast_img", null: false
+    t.string "lunch_img", null: false
+    t.string "dinner_img", null: false
+    t.string "snack_img", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_images_on_user_id"
+  end
+
+  create_table "meals", charset: "utf8", force: :cascade do |t|
+    t.string "breakfast", null: false
+    t.string "lunch", null: false
+    t.string "dinner", null: false
+    t.string "snack", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_meals_on_user_id"
+  end
+
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", default: "", null: false
@@ -24,4 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_31_134231) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "calories", "users"
+  add_foreign_key "images", "users"
+  add_foreign_key "meals", "users"
 end
