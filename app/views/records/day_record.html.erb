@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CalorieFriends</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+     <p>ここは食事・カロリーを記録するページです</p>
+      <span class="name">
+        <% if @user.present? %>
+          <a href="<%= user_path(@user) %>">
+           <span>マイページ</span><%= @user.name %>
+          </a>
+        <% else %>
+         <a href="<%= root_path %>">
+          <span>トップページ</span>
+        </a>
+        <% end %>
+      </span>
+       <!-- データの表示 -->
+
+    <h2>Images</h2>
+    <% @images.each do |image| %>
+      <!-- ここにImagesのデータを表示するコードを追加 -->
+    <% end %>
+    
+    <h2>Meals</h2>
+    <% @meals.each do |meal| %>
+      <p><%= meal.name %></p>
+    <% end %>
+
+    <h2>Calories</h2>
+    <% @calories.each do |calorie| %>
+      <p><%= calorie.amount %></p>
+    <% end %>
+
+    <%= form_with model: Image.new, url: images_path, method: :post, local: true, multipart: true do |form| %>
+      <label for="image_file">Image:</label>
+      <%= form.file_field :file, id: "image_file" %>
+      <%= form.submit 'Upload Image' %>
+    <% end %>
+
+    <%= form_with model: Meal.new, url: meals_path, method: :post do |form| %>
+      <label for="meal_name">Meal Name:</label>
+      <%= form.text_field :name, id: "meal_name" %>
+
+      <label for="meal_calories">Calories:</label>
+      <%= form.number_field :calories, id: "meal_calories" %>
+
+      <%= form.submit "Save Meal" %>
+    <% end %>
+
+
+  </body>
+</html>

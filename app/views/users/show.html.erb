@@ -70,5 +70,10 @@
         <span>マイページ</span><%= @user.name %>
        </a>
     </span>
+    <%= link_to '今日の食事記録', day_record_path %>
+
+    <%= month_calendar do |date| %>
+      <%= date.day %>  
+    <% end %>
   </body>
 </html>
