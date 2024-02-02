@@ -15,7 +15,7 @@
   
   <form id="bmrForm">
 
-     <label for="gender">性別:</label>
+    <label for="gender">性別:</label>
     <select id="gender" required>
       <option value="male">男性</option>
       <option value="female">女性</option>
@@ -40,11 +40,11 @@
     
     <button type="button" onclick="calculateBMR()">計算</button>
   </form>
-
+  
   <div id="result"></div>
 
-  <script>
-    function calculateBMR() {
+    <script>
+      function calculateBMR() {
       var weight = document.getElementById('weight').value;
       var height = document.getElementById('height').value;
       var age = document.getElementById('age').value;
@@ -62,11 +62,13 @@
       .then(data => {
         document.getElementById('result').innerHTML = 'BMR: ' + data.bmr.toFixed(2) + ' kcal/day';
       });
-    }
+      }
+    </script>
+    
     <span class="name">
-      <a href="/users/<%= @user.id %>">
-        <span>投稿者</span><%= @user.name %>
-      </a>
+       <a href="<%= user_path(@user) %>">
+        <span>マイページ</span><%= @user.name %>
+       </a>
     </span>
   </body>
 </html>

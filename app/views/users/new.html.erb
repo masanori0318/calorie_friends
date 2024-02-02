@@ -11,67 +11,6 @@
   </head>
 
   <body>
-    <h1>基礎代謝計算</h1>
-  
-  <form id="bmrForm">
-
-     <label for="gender">性別:</label>
-    <select id="gender" required>
-      <option value="male">男性</option>
-      <option value="female">女性</option>
-    </select>
-    
-    <br>
-
-    <label for="age">年齢:</label>
-    <input type="number" id="age" required>
-
-    <br>
-    <label for="weight">体重 (kg):</label>
-    <input type="number" id="weight" required>
-    
-    <br>
-    
-    <label for="height">身長 (cm):</label>
-    <input type="number" id="height" required>
-    
-    <br>
-    
-    
-    <button type="button" onclick="calculateBMR()">計算</button>
-  </form>
-
-  <div id="result">
-    <span id="bmrResult"></span>
-  </div>
-
-  <script>
-    function calculateBMR() {
-      var weight = document.getElementById('weight').value;
-      var height = document.getElementById('height').value;
-      var age = document.getElementById('age').value;
-      var gender = document.getElementById('gender').value;
-
-      fetch('/calculations/calculate_bmr', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
-        },
-        body: JSON.stringify({ weight: weight, height: height, age: age, gender: gender })
-      })
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('result').innerHTML = 'BMR: ' + data.bmr.toFixed(2) + ' kcal/day';
-      });
-    }
-    </script>
-    <span class="name">
-      <a href="/users/<%= @user.id %>">
-        <span>投稿者</span><%= @user.name %>
-      </a>
-    </span>
+     
   </body>
 </html>
-
-
