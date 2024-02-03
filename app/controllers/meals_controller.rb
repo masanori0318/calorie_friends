@@ -12,7 +12,8 @@ class MealsController < ApplicationController
   private
 
   def meal_params
-    params.require(:meal).permit(:name, :calories, :image)
+    # 必要に応じて他の属性も追加
+    params.require(:meal).permit(:breakfast, :lunch, :dinner, :snack)
   end
 end
 

@@ -24,13 +24,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_31_135548) do
   end
 
   create_table "images", charset: "utf8", force: :cascade do |t|
-    t.string "breakfast_img", null: false
-    t.string "lunch_img", null: false
-    t.string "dinner_img", null: false
-    t.string "snack_img", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "breakfast_img"
+    t.string "lunch_img"
+    t.string "dinner_img"
+    t.string "snack_img"
     t.index ["user_id"], name: "index_images_on_user_id"
   end
 
