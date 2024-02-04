@@ -6,7 +6,7 @@ class ImagesController < ApplicationController
 
   def create
     @image = Image.new(image_params)
-    @image.user = current_user # ユーザーに関連付ける
+    @image.user = current_user
 
     if @image.save
       redirect_to day_record_path, notice: '画像がアップロードされました。'
@@ -18,7 +18,6 @@ class ImagesController < ApplicationController
   private
 
   def image_params
-    params.require(:image).permit(:file) # 画像アップロードに関連するパラメータを追加
+    params.require(:image).permit(:breakfast_img, :lunch_img, :dinner_img, :snack_img)
   end
 end
-
