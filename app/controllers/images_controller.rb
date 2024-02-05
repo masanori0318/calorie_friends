@@ -9,15 +9,17 @@ class ImagesController < ApplicationController
     @image.user = current_user
 
     if @image.save
-      redirect_to day_record_path, notice: '画像がアップロードされました。'
+      # 保存が成功した場合の処理
+      redirect_to root_path, notice: '画像が正常にアップロードされました。'
     else
-      render 'records/day_record'
+      # 保存が失敗した場合の処理
+      render :new
     end
   end
 
   private
 
   def image_params
-    params.require(:image).permit(:breakfast_img, :lunch_img, :dinner_img, :snack_img)
+    params.permit(:breakfast_img, :lunch_img, :dinner_img, :snack_img)
   end
 end

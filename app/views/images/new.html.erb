@@ -1,0 +1,17 @@
+<h1>Upload Images</h1>
+
+<%= form_with(model: @image, local: true, html: {multipart: true}) do |form| %>
+  <%= form.label :breakfast_img %>
+  <%= form.file_field :breakfast_img %>
+
+  <%= form.label :lunch_img %>
+  <%= form.file_field :lunch_img %>
+
+  <%= form.label :dinner_img %>
+  <%= form.file_field :dinner_img %>
+
+  <%= form.label :snack_img %>
+  <%= form.file_field :snack_img %>
+
+  <%= form.submit "Upload" %>
+<% end %>

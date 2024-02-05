@@ -1,4 +1,5 @@
 class Meal < ApplicationRecord
-  attr_accessor :breakfast, :lunch, :dinner, :snack
-
+  belongs_to :user
+  
+  validates :breakfast, :lunch, :dinner, :snack, presence: true
 end
