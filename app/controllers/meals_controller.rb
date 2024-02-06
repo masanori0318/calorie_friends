@@ -21,7 +21,7 @@ class MealsController < ApplicationController
       render :new
     end
   end
-  
+
   private
 
   def meal_params

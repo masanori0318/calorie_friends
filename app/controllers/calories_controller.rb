@@ -4,7 +4,7 @@ class CaloriesController < ApplicationController
 
   def index
     @calories = @user.calories.all
-    
+
     @calorie = Calorie.new
   end
 
@@ -17,8 +17,8 @@ class CaloriesController < ApplicationController
 
   def create
     @calorie = @user.calories.build(calorie_params)
-    @calorie.user_id = @user.id 
-    
+    @calorie.user_id = @user.id
+
     if @calorie.save
       redirect_to user_calories_path(@user), notice: 'Calories were successfully created.'
     else
@@ -46,10 +46,10 @@ class CaloriesController < ApplicationController
 
   def set_user
     @user = User.find_by(id: params[:user_id])
-    unless @user
-       # ユーザーが見つからない場合の処理を追加（例: リダイレクトやエラーメッセージ表示）
-      redirect_to root_path, alert: 'User not found'
-    end
+    return if @user
+
+    # ユーザーが見つからない場合の処理を追加（例: リダイレクトやエラーメッセージ表示）
+    redirect_to root_path, alert: 'User not found'
   end
 
   def set_calorie
