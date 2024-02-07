@@ -15,7 +15,7 @@ class CaloriesController < ApplicationController
   end
 
   def create
-    binding.pry
+    
     @calorie = @user.calories.build(calorie_params)
 
     if @calorie.save
