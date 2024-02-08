@@ -19,7 +19,7 @@ https://docs.google.com/spreadsheets/d/1lZB2L9MapGlK937o9HTbXPQ6GTVmk0vl/edit#gi
 # 実装予定の機能 
 洗い出した要件の中から、今後実装予定の機能がある場合は、その機能を記載。
 # データベース設計  
-[![Image from Gyazo](https://i.gyazo.com/4474c0e55c1fb007f2d79019e5c8ca3b.png)](https://gyazo.com/4474c0e55c1fb007f2d79019e5c8ca3b)
+[![Image from Gyazo](https://i.gyazo.com/fd299f3e2c87d4a25c323953c0dd1995.png)](https://gyazo.com/fd299f3e2c87d4a25c323953c0dd1995)
 
 # 画面遷移図 
 
