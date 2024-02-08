@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get 'day_record', to: 'records#day_record'
   get '*path', to: 'records#not_found'
   post "/meals", to: "meals#create"
+  post '/records/create', to: 'records#create', as: 'create_record'
 end

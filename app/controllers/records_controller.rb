@@ -13,9 +13,9 @@ class RecordsController < ApplicationController
 
   def day_record
     @user = current_user
-    @meals = Meal.all
-    @calories = Calorie.all
-    @images = Image.all
+    @image = Image.new
+    @meal = Meal.new
+    @calories = Calorie.new
   end
 
   def not_found

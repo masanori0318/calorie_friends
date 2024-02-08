@@ -25,101 +25,78 @@
       </span>
        <!-- データの表示 -->
 
-<h2>新しい画像をアップロード</h2>
-<%= form_with(model: @image, url: images_path, local: true, multipart: true) do |form| %>
-  <div>
-    <%= form.label :breakfast_img, '朝食の画像' %>
-    <%= form.file_field :breakfast_img %>
-  </div>
+  <%= form_with(model: [@user, @image, @meal, @calories], url: create_record_path, local: true) do |form| %>
+    <%# Image %>
+    <div class="field">
+      <%= form.label :breakfast_img %>
+      <%= form.file_field :breakfast_img %>
+    </div>
 
-  <div>
-    <%= form.label :lunch_img, '昼食の画像' %>
-    <%= form.file_field :lunch_img %>
-  </div>
+    <div class="field">
+      <%= form.label :lunch_img %>
+      <%= form.file_field :lunch_img %>
+    </div>
 
-  <div>
-    <%= form.label :dinner_img, '夕食の画像' %>
-    <%= form.file_field :dinner_img %>
-  </div>
+    <div class="field">
+      <%= form.label :dinner_img %>
+      <%= form.file_field :dinner_img %>
+    </div>
 
-  <div>
-    <%= form.label :snack_img, 'おやつの画像' %>
-    <%= form.file_field :snack_img %>
-  </div>
-
-  <div>
-    <%= form.submit 'アップロード' %>
-  </div>
-<% end %>
-
-<%= link_to '一覧に戻る', images_path %>
-    
-<h2>Meals</h2>
-<% @meals.each do |meal| %>
-  <p><%= meal.name %></p> <!-- 'meal.name' を必要に応じて 'meal.breakfast', 'meal.lunch' などに変更 -->
-<% end %>
-
-<%= form_with model: Meal.new, url: meals_path, method: :post do |form| %>
-  <!-- 各食事タイプに対して上記の text_field を 'breakfast', 'lunch', 'dinner', 'snack' など必要に応じて繰り返す -->
-  <label for="meal_breakfast">Breakfast:</label>
-  <%= form.text_field :breakfast, id: "meal_breakfast" %>
-
-  <label for="meal_lunch">Lunch:</label>
-  <%= form.text_field :lunch, id: "meal_lunch" %>
-
-  <label for="meal_dinner">Dinner:</label>
-  <%= form.text_field :dinner, id: "meal_dinner" %>
-
-  <label for="meal_snack">Snack:</label>
-  <%= form.text_field :snack, id: "meal_snack" %>
-
+    <div class="field">
+      <%= form.label :snack_img %>
+      <%= form.file_field :snack_img %>
+    </div>
   
+  <%# Meal %>
+    <div class="field">
+      <%= form.label :breakfast %>
+      <%= form.text_field :breakfast %>
+    </div>
 
-  <%= form.submit %>
-<% end %>
+    <div class="field">
+      <%= form.label :lunch %>
+      <%= form.text_field :lunch %>
+    </div>
 
-<h2>Calories</h2>
-<% @calories.each do |calorie| %>
-  <p>Breakfast: <%= calorie.breakfast_cal %></p>
-  <p>Lunch: <%= calorie.lunch_cal %></p>
-  <p>Dinner: <%= calorie.dinner_cal %></p>
-  <p>Snack: <%= calorie.snack_cal %></p>
-  <p>Total: <%= calorie.total_calorie %></p>
-<% end %>
+    <div class="field">
+      <%= form.label :dinner %>
+      <%= form.text_field :dinner %>
+    </div>
 
-<%= form_with model: Calorie.new, url: calories_path, method: :post do |form| %>
-  <label for="calorie_breakfast_cal">Breakfast Calories:</label>
-  <%= form.number_field :breakfast_cal, id: "calorie_breakfast_cal" %>
+    <div class="field">
+      <%= form.label :snack %>
+      <%= form.text_field :snack %>
+    </div>
 
-  <label for="calorie_lunch_cal">Lunch Calories:</label>
-  <%= form.number_field :lunch_cal, id: "calorie_lunch_cal" %>
+    <%# Calories %>
+    <div class="field">
+      <%= form.label :breakfast_cal %>
+      <%= form.number_field :breakfast_cal %>
+    </div>
 
-  <label for="calorie_dinner_cal">Dinner Calories:</label>
-  <%= form.number_field :dinner_cal, id: "calorie_dinner_cal" %>
+    <div class="field">
+      <%= form.label :lunch_cal %>
+      <%= form.number_field :lunch_cal %>
+    </div>
 
-  <label for="calorie_snack_cal">Snack Calories:</label>
-  <%= form.number_field :snack_cal, id: "calorie_snack_cal" %>
+    <div class="field">
+      <%= form.label :dinner_cal %>
+      <%= form.number_field :dinner_cal %>
+    </div>
 
-  <%= form.submit %>
-<% end %>
-    <%#= form_with model: Image.new, url: images_path, method: :post, local: true, multipart: true do |form| %>
-      <%#<label for="image_file">Image:</label>
-      <%#= form.file_field :file, id: "image_file" %>
-      <%#= form.submit 'Upload Image' %>
-    <%# end %>
+    <div class="field">
+      <%= form.label :snack_cal %>
+      <%= form.number_field :snack_cal %>
+    </div>
 
-    <%#= form_with model: Meal.new, url: meals_path, method: :post do |form| %>
-      <%#<label for="meal_name">Meal Name:</label>
-      <%= form.text_field :name, id: "meal_name" %>
-    <%# end %>
+    <div class="field">
+      <%= form.label :total_calorie %>
+      <%= form.number_field :total_calorie %>
+    </div>
 
-      <%#<label for="meal_calories">Calories:</label>
-      <%= form.number_field :calories, id: "meal_calories" %>
-
-      <%#= form.submit "Save Meal" %>
-    <%# end %>
-
-
-
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
   </body>
 </html>

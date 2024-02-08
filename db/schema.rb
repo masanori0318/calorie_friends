@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_05_120743) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_08_122535) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -62,6 +62,19 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_05_120743) do
     t.index ["user_id"], name: "index_images_on_user_id"
   end
 
+  create_table "meal_calorie_images", charset: "utf8", force: :cascade do |t|
+    t.bigint "meal_id", null: false
+    t.bigint "calorie_id", null: false
+    t.bigint "image_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["calorie_id"], name: "index_meal_calorie_images_on_calorie_id"
+    t.index ["image_id"], name: "index_meal_calorie_images_on_image_id"
+    t.index ["meal_id"], name: "index_meal_calorie_images_on_meal_id"
+    t.index ["user_id"], name: "index_meal_calorie_images_on_user_id"
+  end
+
   create_table "meals", charset: "utf8", force: :cascade do |t|
     t.string "breakfast", null: false
     t.string "lunch", null: false
@@ -90,5 +103,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_05_120743) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "calories", "users"
   add_foreign_key "images", "users"
+  add_foreign_key "meal_calorie_images", "calories", column: "calorie_id"
+  add_foreign_key "meal_calorie_images", "images"
+  add_foreign_key "meal_calorie_images", "meals"
+  add_foreign_key "meal_calorie_images", "users"
   add_foreign_key "meals", "users"
 end
