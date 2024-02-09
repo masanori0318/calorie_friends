@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :images, only: [:index, :new, :create]
   resources :meals, only: [:index, :create]
   resources :calories, only: [:index, :create]
+  resources :records
   post '/calculations/calculate_bmr', to: 'calculations#calculate_bmr'
   get 'home', to: 'records#home'
   get 'day_record', to: 'records#day_record'
