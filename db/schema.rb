@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_08_122535) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_10_135526) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,51 +39,23 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_08_122535) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "calories", charset: "utf8", force: :cascade do |t|
-    t.integer "breakfast_cal", null: false
-    t.integer "lunch_cal", null: false
-    t.integer "dinner_cal", null: false
-    t.integer "snack_cal", null: false
-    t.integer "total_calorie", null: false
+  create_table "records", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_calories_on_user_id"
-  end
-
-  create_table "images", charset: "utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "breakfast_img"
     t.string "lunch_img"
     t.string "dinner_img"
     t.string "snack_img"
-    t.index ["user_id"], name: "index_images_on_user_id"
-  end
-
-  create_table "meal_calorie_images", charset: "utf8", force: :cascade do |t|
-    t.bigint "meal_id", null: false
-    t.bigint "calorie_id", null: false
-    t.bigint "image_id", null: false
-    t.bigint "user_id", null: false
+    t.string "breakfast"
+    t.string "lunch"
+    t.string "dinner"
+    t.string "snack"
+    t.integer "breakfast_cal"
+    t.integer "lunch_cal"
+    t.integer "dinner_cal"
+    t.integer "snack_cal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["calorie_id"], name: "index_meal_calorie_images_on_calorie_id"
-    t.index ["image_id"], name: "index_meal_calorie_images_on_image_id"
-    t.index ["meal_id"], name: "index_meal_calorie_images_on_meal_id"
-    t.index ["user_id"], name: "index_meal_calorie_images_on_user_id"
-  end
-
-  create_table "meals", charset: "utf8", force: :cascade do |t|
-    t.string "breakfast", null: false
-    t.string "lunch", null: false
-    t.string "dinner", null: false
-    t.string "snack", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_meals_on_user_id"
+    t.index ["user_id"], name: "index_records_on_user_id"
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
@@ -101,11 +73,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_08_122535) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "calories", "users"
-  add_foreign_key "images", "users"
-  add_foreign_key "meal_calorie_images", "calories", column: "calorie_id"
-  add_foreign_key "meal_calorie_images", "images"
-  add_foreign_key "meal_calorie_images", "meals"
-  add_foreign_key "meal_calorie_images", "users"
-  add_foreign_key "meals", "users"
+  add_foreign_key "records", "users"
 end

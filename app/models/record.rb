@@ -1,6 +1,5 @@
 class Record < ApplicationRecord
-  # Recordモデルに関連する属性を定義します
-  attr_accessor :breakfast, :lunch, :dinner, :snack, :breakfast_cal, :lunch_cal, :dinner_cal, :snack_cal, :breakfast_img, :lunch_img, :dinner_img, :snack_img
-
-  # 必要に応じて、他のモデルとの関連性を定義します
+  belongs_to :user, optional: true # ユーザーに対する関連付け。optional: true で user_id の存在を任意とする
+  
+  # 他のバリデーションやロジックが必要であれば追加
 end
