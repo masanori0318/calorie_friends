@@ -11,89 +11,87 @@
   </head>
 
   <body>
-     <p>ここは食事・カロリーを記録するページです</p>
-      <span class="name">
-        <% if @user.present? %>
-          <a href="<%= user_path(@user) %>">
-           <span>マイページ</span><%= @user.name %>
-          </a>
-        <% else %>
-         <a href="<%= root_path %>">
+    <p>ここは食事・カロリーを記録するページです</p>
+    <span class="name">
+      <% if @user.present? %>
+        <a href="<%= user_path(@user) %>">
+          <span>マイページ</span><%= @user.name %>
+        </a>
+      <% else %>
+        <a href="<%= root_path %>">
           <span>トップページ</span>
         </a>
-        <% end %>
-      </span>
-       <!-- データの表示 -->
+      <% end %>
+    </span>
 
-  <%= form_with(model: [@user || User.new, @image || Image.new, @meal || Meal.new, @calories || Calorie.new], url: create_record_path, local: true) do |form| %>
-    <%# Image %>
-    <div class="field">
-      <%= form.label :breakfast_img %>
-      <%= form.file_field :breakfast_img %>
-    </div>
+    <!-- データの表示 -->
+    <%= form_with(model: [@user || User.new, @record || Record.new], url: create_record_path, local: true) do |form| %>
+      <!-- Record -->
+      <div class="field">
+        <%= form.label :breakfast_img %>
+        <%= form.file_field :breakfast_img %>
+      </div>
 
-    <div class="field">
-      <%= form.label :lunch_img %>
-      <%= form.file_field :lunch_img %>
-    </div>
+      <div class="field">
+        <%= form.label :lunch_img %>
+        <%= form.file_field :lunch_img %>
+      </div>
 
-    <div class="field">
-      <%= form.label :dinner_img %>
-      <%= form.file_field :dinner_img %>
-    </div>
+      <div class="field">
+        <%= form.label :dinner_img %>
+        <%= form.file_field :dinner_img %>
+      </div>
 
-    <div class="field">
-      <%= form.label :snack_img %>
-      <%= form.file_field :snack_img %>
-    </div>
-  
-  <%# Meal %>
-    <div class="field">
-      <%= form.label :breakfast %>
-      <%= form.text_field :breakfast %>
-    </div>
+      <div class="field">
+        <%= form.label :snack_img %>
+        <%= form.file_field :snack_img %>
+      </div>
+      
+      <!-- Meal -->
+      <div class="field">
+        <%= form.label :breakfast %>
+        <%= form.text_field :breakfast %>
+      </div>
 
-    <div class="field">
-      <%= form.label :lunch %>
-      <%= form.text_field :lunch %>
-    </div>
+      <div class="field">
+        <%= form.label :lunch %>
+        <%= form.text_field :lunch %>
+      </div>
 
-    <div class="field">
-      <%= form.label :dinner %>
-      <%= form.text_field :dinner %>
-    </div>
+      <div class="field">
+        <%= form.label :dinner %>
+        <%= form.text_field :dinner %>
+      </div>
 
-    <div class="field">
-      <%= form.label :snack %>
-      <%= form.text_field :snack %>
-    </div>
+      <div class="field">
+        <%= form.label :snack %>
+        <%= form.text_field :snack %>
+      </div>
 
-    <%# Calories %>
-    <div class="field">
-      <%= form.label :breakfast_cal %>
-      <%= form.number_field :breakfast_cal %>
-    </div>
+      <!-- Calories -->
+      <div class="field">
+        <%= form.label :breakfast_cal %>
+        <%= form.number_field :breakfast_cal %>
+      </div>
 
-    <div class="field">
-      <%= form.label :lunch_cal %>
-      <%= form.number_field :lunch_cal %>
-    </div>
+      <div class="field">
+        <%= form.label :lunch_cal %>
+        <%= form.number_field :lunch_cal %>
+      </div>
 
-    <div class="field">
-      <%= form.label :dinner_cal %>
-      <%= form.number_field :dinner_cal %>
-    </div>
+      <div class="field">
+        <%= form.label :dinner_cal %>
+        <%= form.number_field :dinner_cal %>
+      </div>
 
-    <div class="field">
-      <%= form.label :snack_cal %>
-      <%= form.number_field :snack_cal %>
-    </div>
+      <div class="field">
+        <%= form.label :snack_cal %>
+        <%= form.number_field :snack_cal %>
+      </div>
 
-    
-
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-  <% end %>
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    <% end %>
   </body>
 </html>

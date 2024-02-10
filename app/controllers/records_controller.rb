@@ -1,4 +1,8 @@
 class RecordsController < ApplicationController
+  def index
+    @records = Record.all
+  end
+
   def new
     @record = Record.new
     # 現在のユーザーの ID を取得して user_id パラメーターに設定
@@ -17,6 +21,11 @@ class RecordsController < ApplicationController
       # 保存失敗時の処理
       render :new
     end
+  end
+
+  def show
+    @record = Record.find_by(date: params[:date])
+    @records = [@record] if @record.present?
   end
 
   private

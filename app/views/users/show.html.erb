@@ -70,10 +70,12 @@
         <span>マイページ</span><%= @user.name %>
        </a>
     </span>
-    <%= link_to '今日の食事記録', day_record_path %>
+    <%= link_to '今日の食事記録', day_record_path(date: Date.today) %>
 
     <%= month_calendar do |date| %>
-      <%= date.day %>  
+      <span class="calendar-date" data-date="<%= date.to_s %>">
+        <%= link_to date.day, record_path(date: date) %>
+      </span>
     <% end %>
   </body>
 </html>
