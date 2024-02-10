@@ -25,7 +25,7 @@
       </span>
        <!-- データの表示 -->
 
-  <%= form_with(model: [@user, @image, @meal, @calories], url: create_record_path, local: true) do |form| %>
+  <%= form_with(model: [@user || User.new, @image || Image.new, @meal || Meal.new, @calories || Calorie.new], url: create_record_path, local: true) do |form| %>
     <%# Image %>
     <div class="field">
       <%= form.label :breakfast_img %>

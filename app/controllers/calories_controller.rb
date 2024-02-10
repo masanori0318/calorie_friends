@@ -45,9 +45,7 @@ class CaloriesController < ApplicationController
 
   def set_user
     @user = User.find_by(id: params[:user_id])
-    unless @user
-      redirect_to root_path, alert: 'User not found'
-    end
+    redirect_to root_path, alert: 'User not found' unless @user
   end
 
   def set_calorie
