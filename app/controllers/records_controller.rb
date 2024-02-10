@@ -26,6 +26,8 @@ class RecordsController < ApplicationController
   def show
     @record = Record.find_by(date: params[:date])
     @records = [@record] if @record.present?
+    @date = params[:date]
+    @records = Record.where(date: @date)
   end
 
   private

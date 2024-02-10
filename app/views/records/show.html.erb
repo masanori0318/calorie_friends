@@ -1,3 +1,27 @@
+<% if @records.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Breakfast</th>
+        <!-- 他のヘッダー項目もここに追加 -->
+      </tr>
+    </thead>
+    <tbody>
+      <% @records.each do |record| %>
+        <tr>
+          <td><%= record.user.name %></td>
+          <td><%= record.breakfast %></td>
+          <!-- 他のデータ項目もここに追加 -->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No records found for this date.</p>
+<% end %>
+
+
 <h1>Records</h1>
 
 <table>
