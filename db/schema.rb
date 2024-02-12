@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_10_162632) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_12_141130) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -41,10 +41,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_10_162632) do
 
   create_table "records", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "breakfast_img"
-    t.string "lunch_img"
-    t.string "dinner_img"
-    t.string "snack_img"
     t.string "breakfast"
     t.string "lunch"
     t.string "dinner"

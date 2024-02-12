@@ -39,10 +39,10 @@
   <tbody>
     <% @records.each do |record| %>
       <tr>
-        <td><%= record.breakfast_img %></td>
-        <td><%= record.lunch_img %></td>
-        <td><%= record.dinner_img %></td>
-        <td><%= record.snack_img %></td>
+        <td><%= image_tag record.breakfast_img.url if record.breakfast_img.attached? %></td>
+        <td><%= image_tag record.lunch_img.url if record.lunch_img.attached? %></td>
+        <td><%= image_tag record.dinner_img.url if record.dinner_img.attached? %></td>
+        <td><%= image_tag record.snack_img.url if record.snack_img.attached? %></td>
 
         <td><%= record.user.name %></td>
         <td><%= record.breakfast %></td>
