@@ -4,67 +4,64 @@
       <tr>
         <th>User</th>
         <th>Breakfast</th>
+        <th>Lunch</th>
+        <th>Dinner</th>
+        <th>Snack</th>
         <!-- 他のヘッダー項目もここに追加 -->
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <% @records.each do |record| %>
         <tr>
+          <h1>Record Details</h1>
+
+          <p>User: <%= @record.user.name %></p>
+          <p>Breakfast: <%= @record.breakfast %></p>
+          <p>Lunch: <%= @record.lunch %></p>
+          <p>Dinner: <%= @record.dinner %></p>
+          <p>Snack: <%= @record.snack %></p>
+          <!-- 他のカラムも追加 -->
+
+          <% if @record.breakfast_img.attached? %>
+            <%= image_tag @record.breakfast_img %>
+          <% end %>
+
+          <% if @record.lunch_img.attached? %>
+            <%= image_tag @record.lunch_img %>
+          <% end %>
+
+          <% if @record.dinner_img.attached? %>
+            <%= image_tag @record.dinner_img %>
+          <% end %>
+
+          <% if @record.snack_img.attached? %>
+            <%= image_tag @record.snack_img %>
+          <% end %>
+
+          <%= link_to 'Back', records_path %>
           <td><%= record.user.name %></td>
           <td><%= record.breakfast %></td>
+          <td><%= record.lunch %></td>
+          <td><%= record.dinner %></td>
+          <td><%= record.snack %></td>
+          <td><%= record.breakfast_cal %></td>
+          <td><%= record.lunch_cal %></td>
+          <td><%= record.dinner_cal %></td>
+          <td><%= record.snack_cal %></td>
+
           <!-- 他のデータ項目もここに追加 -->
+          <td>
+            <%= link_to 'Show', record_path(record) %>
+            <%= link_to 'Edit', edit_record_path(record) %>
+            <%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
         </tr>
       <% end %>
     </tbody>
-  </table>
+  </table
 <% else %>
   <p>No records found for this date.</p>
 <% end %>
-
-
-<h1>Records</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Breakfast</th>
-      <th>Lunch</th>
-      <th>Dinner</th>
-      <th>Snack</th>
-      <!-- 他のカラムを追加する場合はここに追加してください -->
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @records.each do |record| %>
-      <tr>
-        <td><%= image_tag record.breakfast_img.url if record.breakfast_img.attached? %></td>
-        <td><%= image_tag record.lunch_img.url if record.lunch_img.attached? %></td>
-        <td><%= image_tag record.dinner_img.url if record.dinner_img.attached? %></td>
-        <td><%= image_tag record.snack_img.url if record.snack_img.attached? %></td>
-
-        <td><%= record.user.name %></td>
-        <td><%= record.breakfast %></td>
-        <td><%= record.lunch %></td>
-        <td><%= record.dinner %></td>
-        <td><%= record.snack %></td>
-        
-        <td><%= record.breakfast_cal %></td>
-        <td><%= record.lunch_cal %></td>
-        <td><%= record.dinner_cal %></td>
-        <td><%= record.snack_cal %></td>
-        <!-- 他のカラムを追加する場合はここに追加してください -->
-        <td>
-          <%= link_to 'Show', record_path(record) %>
-          <%= link_to 'Edit', edit_record_path(record) %>
-          <%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 
 <%= link_to 'New Record', new_record_path %>
