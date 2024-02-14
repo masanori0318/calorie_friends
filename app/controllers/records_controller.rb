@@ -24,12 +24,32 @@ class RecordsController < ApplicationController
     @record = Record.find_by(date: params[:date])
     if @record.present?
       @records = [@record]
+      @images = @record.images
     else
       @records = []
     end
     @date = params[:date]
   end
 
+  def show_image
+    @record = Record.find(params[:id])
+    @image = @record.images.find(params[:image_id])
+    send_data @image.download, type: @image.content_type, disposition: 'inline'
+  end
+  
+
+  private
+
+  def set_records
+    @records = Record.all
+  end
+
+  def not_found
+    respond_to do |format|
+      format.html { render plain: 'Not found', status: :not_found }
+      format.jpeg { head :not_found }
+    end
+  end
 
   private
 

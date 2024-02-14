@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'day_record', to: 'records#day_record'
   get '*path', to: 'records#not_found'
   get 'records/index'
+  get '/records/show_image', to: 'records#show_image'
+  get '/records/:id/show_image/:image_id', to: 'records#show_image', as: 'show_image'
   post "/meals", to: "meals#create"
   post '/records/create', to: 'records#create', as: 'create_record'
 

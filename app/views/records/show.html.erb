@@ -23,21 +23,15 @@
           <p>Snack: <%= @record.snack %></p>
           <!-- 他のカラムも追加 -->
 
-          <% if @record.breakfast_img.attached? %>
-            <%= image_tag @record.breakfast_img %>
+          <td>
+          <% if record.images.attached? %>
+            <% record.images.each do |image| %>
+              <%= link_to image_tag(show_image_path(id: record.id, image_id: image.id), class: "img-thumbnail"), show_image_path(id: record.id, image_id: image.id) %><br>
+            <% end %>
+          <% else %>
+            <p>No images attached.</p>
           <% end %>
-
-          <% if @record.lunch_img.attached? %>
-            <%= image_tag @record.lunch_img %>
-          <% end %>
-
-          <% if @record.dinner_img.attached? %>
-            <%= image_tag @record.dinner_img %>
-          <% end %>
-
-          <% if @record.snack_img.attached? %>
-            <%= image_tag @record.snack_img %>
-          <% end %>
+        </td>
 
           <%= link_to 'Back', records_path %>
           <td><%= record.user.name %></td>

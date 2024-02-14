@@ -1,0 +1,10 @@
+<h1>Images</h1>
+<% if @images.present? %>
+  <div class="images">
+    <% @images.each do |image| %>
+      <%= image_tag image %>
+    <% end %>
+  </div>
+<% else %>
+  <p>No images attached.</p>
+<% end %>
