@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   get '/records/:id/show_image/:image_id', to: 'records#show_image', as: 'show_image'
   post "/meals", to: "meals#create"
   post '/records/create', to: 'records#create', as: 'create_record'
-
+  # Catch-all route for not found errors
+  get '*path', to: 'records#not_found'
 end

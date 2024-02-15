@@ -14,24 +14,47 @@
     <tbody>
       <% @records.each do |record| %>
         <tr>
-          <h1>Record Details</h1>
+          <td><%= record.user.name %></td>
+          <td><%= record.breakfast %></td>
+          <td><%= record.lunch %></td>
+          <td><%= record.dinner %></td>
+          <td><%= record.snack %></td>
 
-          <p>User: <%= @record.user.name %></p>
-          <p>Breakfast: <%= @record.breakfast %></p>
-          <p>Lunch: <%= @record.lunch %></p>
-          <p>Dinner: <%= @record.dinner %></p>
-          <p>Snack: <%= @record.snack %></p>
+          <%= image_tag record.breakfast_img %>
+          <%= image_tag record.lunch_img %>
+          <%= image_tag record.dinner_img %>
+          <%= image_tag record.snack_img %>
           <!-- 他のカラムも追加 -->
 
           <td>
-          <% if record.images.attached? %>
-            <% record.images.each do |image| %>
-              <%= link_to image_tag(show_image_path(id: record.id, image_id: image.id), class: "img-thumbnail"), show_image_path(id: record.id, image_id: image.id) %><br>
+            <% if record.breakfast_img.attached? %>
+              
+              <%= image_tag record.breakfast_img.variant(resize_to_limit: [100, 100]) %>
+            <% else %>
+              <p>No image attached.</p>
             <% end %>
-          <% else %>
-            <p>No images attached.</p>
-          <% end %>
-        </td>
+          </td>
+          <td>
+            <% if record.lunch_img.attached? %>
+              <%= image_tag record.lunch_img.variant(resize_to_limit: [100, 100]) %>
+            <% else %>
+              <p>No image attached.</p>
+            <% end %>
+          </td>
+          <td>
+            <% if record.dinner_img.attached? %>
+              <%= image_tag record.dinner_img.variant(resize_to_limit: [100, 100]) %>
+            <% else %>
+              <p>No image attached.</p>
+            <% end %>
+          </td>
+          <td>
+            <% if record.snack_img.attached? %>
+              <%= image_tag record.snack_img.variant(resize_to_limit: [100, 100]) %>
+            <% else %>
+              <p>No image attached.</p>
+            <% end %>
+          </td>
 
           <%= link_to 'Back', records_path %>
           <td><%= record.user.name %></td>

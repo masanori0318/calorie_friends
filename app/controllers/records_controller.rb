@@ -21,12 +21,17 @@ class RecordsController < ApplicationController
   end
 
   def show
-    @record = Record.find_by(date: params[:date])
+    @record = Record.find(params[:id])
+    @breakfast_img_path = rails_blob_path(@record.breakfast_img, disposition: "attachment") if @record.breakfast_img.attached?
+    @lunch_img_path = rails_blob_path(@record.lunch_img, disposition: "attachment") if @record.lunch_img.attached?
+    @dinner_img_path = rails_blob_path(@record.dinner_img, disposition: "attachment") if @record.dinner_img.attached?
+    @snack_img_path = rails_blob_path(@record.snack_img, disposition: "attachment") if @record.snack_img.attached?
     if @record.present?
       @records = [@record]
       @images = @record.images
     else
       @records = []
+      @images = [] # @recordが見つからない場合は空の配列を設定する
     end
     @date = params[:date]
   end
@@ -36,19 +41,18 @@ class RecordsController < ApplicationController
     @image = @record.images.find(params[:image_id])
     send_data @image.download, type: @image.content_type, disposition: 'inline'
   end
-  
-
-  private
-
-  def set_records
-    @records = Record.all
-  end
 
   def not_found
     respond_to do |format|
       format.html { render plain: 'Not found', status: :not_found }
       format.jpeg { head :not_found }
     end
+  end
+  
+  private
+
+  def set_records
+    @records = Record.all
   end
 
   private
