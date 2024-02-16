@@ -26,13 +26,6 @@ class RecordsController < ApplicationController
     @lunch_img_path = rails_blob_path(@record.lunch_img, disposition: "attachment") if @record.lunch_img.attached?
     @dinner_img_path = rails_blob_path(@record.dinner_img, disposition: "attachment") if @record.dinner_img.attached?
     @snack_img_path = rails_blob_path(@record.snack_img, disposition: "attachment") if @record.snack_img.attached?
-    if @record.present?
-      @records = [@record]
-      @images = @record.images
-    else
-      @records = []
-      @images = [] # @recordが見つからない場合は空の配列を設定する
-    end
     @date = params[:date]
   end
 
