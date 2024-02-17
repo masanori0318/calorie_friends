@@ -16,5 +16,4 @@ Rails.application.routes.draw do
   post "/meals", to: "meals#create"
   post '/records/create', to: 'records#create', as: 'create_record'
   # Catch-all route for not found errors
-  get '*path', to: 'records#not_found'
 end
