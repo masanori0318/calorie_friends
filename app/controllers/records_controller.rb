@@ -36,7 +36,7 @@ class RecordsController < ApplicationController
 
       if @record.nil?
         flash[:alert] = 'No record found for this date.'
-        redirect_to root_path
+        #redirect_to root_path
       else
         # レコードが見つかった場合の処理を記述
         @breakfast_img_path = rails_blob_path(@record.breakfast_img) if @record.breakfast_img.attached?
