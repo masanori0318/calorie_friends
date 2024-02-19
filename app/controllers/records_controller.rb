@@ -23,14 +23,21 @@ class RecordsController < ApplicationController
   end
 
   def show
-    def show
-      date = Date.new(params[:year].to_i, params[:month].to_i, params[:id].to_i)
+    year = params[:year].to_i
+    month = params[:month].to_i
+    day = params[:id].to_i
+    begin
+      date = Date.new(year, month, day)
       @record = Record.find_by(date: date)
       if @record.nil?
         # レコードが見つからない場合の処理
         flash[:alert] = "Record for the specified date not found."
-        redirect_to root_path
+        #redirect_to root_path
       end
+    rescue ArgumentError
+      # 日付が無効な場合の処理
+      flash[:alert] = "Invalid date provided."
+      #redirect_to root_path
     end
   end
 
@@ -48,6 +55,13 @@ class RecordsController < ApplicationController
     end
   end
 
+  def destroy
+    puts "Destroy action called!"
+    @record = Record.find(params[:id])
+    @record.destroy
+    redirect_to records_path, notice: 'Record was successfully destroyed.'
+  end
+  
   def not_found
     respond_to do |format|
       format.html { render plain: 'Not found', status: :not_found }
