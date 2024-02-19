@@ -1,6 +1,8 @@
 class RecordsController < ApplicationController
   def index
-    @records = Record.all
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @records = Record.where(date: @date.beginning_of_month..@date.end_of_month)
+    @calendar_records = @records.group_by(&:date)
   end
 
   def new
@@ -21,36 +23,14 @@ class RecordsController < ApplicationController
   end
 
   def show
-    
-    # 年月日を取得
-    year = params[:year].to_i
-    month = params[:month].to_i
-    day = params[:day].to_i
-    puts params.inspect
-    begin
-      # 年月日が有効かどうかをチェック
-      date = Date.new(year, month, day)
-
-      # 年月日に紐づくレコードを検索
+    def show
+      date = Date.new(params[:year].to_i, params[:month].to_i, params[:id].to_i)
       @record = Record.find_by(date: date)
-
       if @record.nil?
-        flash[:alert] = 'No record found for this date.'
-        #redirect_to root_path
-      else
-        # レコードが見つかった場合の処理を記述
-        @breakfast_img_path = rails_blob_path(@record.breakfast_img) if @record.breakfast_img.attached?
-        @lunch_img_path = rails_blob_path(@record.lunch_img) if @record.lunch_img.attached?
-        @dinner_img_path = rails_blob_path(@record.dinner_img) if @record.dinner_img.attached?
-        @snack_img_path = rails_blob_path(@record.snack_img) if @record.snack_img.attached?
-        @date = @record.date
-
-        p @record # これにより、@recordの中身をターミナルやコンソールに出力します
+        # レコードが見つからない場合の処理
+        flash[:alert] = "Record for the specified date not found."
+        redirect_to root_path
       end
-    rescue ArgumentError
-      # 年月日が無効な場合の処理
-      flash[:alert] = 'Invalid date'
-      #redirect_to root_path
     end
   end
 
