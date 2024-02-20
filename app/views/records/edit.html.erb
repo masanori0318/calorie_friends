@@ -1,0 +1,61 @@
+<%= form_with(model: @record, url: record_path(@record), method: :patch) do |form| %>
+  <% if @record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+      <ul>
+        <% @record.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    
+      <!-- Meal -->
+      <div class="field">
+        <%= form.label :breakfast %>
+        <%= form.text_field :breakfast %>
+      </div>
+
+      <div class="field">
+        <%= form.label :lunch %>
+        <%= form.text_field :lunch %>
+      </div>
+
+      <div class="field">
+        <%= form.label :dinner %>
+        <%= form.text_field :dinner %>
+      </div>
+
+      <div class="field">
+        <%= form.label :snack %>
+        <%= form.text_field :snack %>
+      </div>
+
+      <!-- Calories -->
+      <div class="field">
+        <%= form.label :breakfast_cal %>
+        <%= form.number_field :breakfast_cal %>
+      </div>
+
+      <div class="field">
+        <%= form.label :lunch_cal %>
+        <%= form.number_field :lunch_cal %>
+      </div>
+
+      <div class="field">
+        <%= form.label :dinner_cal %>
+        <%= form.number_field :dinner_cal %>
+      </div>
+
+      <div class="field">
+        <%= form.label :snack_cal %>
+        <%= form.number_field :snack_cal %>
+      </div>
+  <!-- 他のフィールドを追加 -->
+
+  <div class="actions">
+    <%= form.submit "Update Record" %>
+  </div>
+<% end %>

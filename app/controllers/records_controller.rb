@@ -23,6 +23,7 @@ class RecordsController < ApplicationController
   end
 
   def show
+    
     year = params[:year].to_i
     month = params[:month].to_i
     day = params[:id].to_i
@@ -41,19 +42,7 @@ class RecordsController < ApplicationController
     end
   end
 
-  def show_image
-    @record = Record.find(params[:id])
-    @image = @record.breakfast_img if params[:image_type] == 'breakfast'
-    @image = @record.lunch_img if params[:image_type] == 'lunch'
-    @image = @record.dinner_img if params[:image_type] == 'dinner'
-    @image = @record.snack_img if params[:image_type] == 'snack'
-
-    if @image.attached?
-      send_data @image.download, type: @image.content_type, disposition: 'inline'
-    else
-      render plain: 'Image not found', status: :not_found
-    end
-  end
+  
 
   def destroy
     puts "Destroy action called!"
@@ -61,7 +50,21 @@ class RecordsController < ApplicationController
     @record.destroy
     redirect_to records_path, notice: 'Record was successfully destroyed.'
   end
+
+  def edit
+    @record = Record.find(params[:id])
+  end  
   
+  def update
+    @record = Record.find(params[:id])
+  
+    if @record.update(record_params)
+      redirect_to @record, notice: 'Record was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
   def not_found
     respond_to do |format|
       format.html { render plain: 'Not found', status: :not_found }
@@ -76,6 +79,6 @@ class RecordsController < ApplicationController
   end
 
   def record_params
-    params.require(:record).permit(:user_id, :breakfast_img, :lunch_img, :dinner_img, :snack_img, :breakfast, :lunch, :dinner, :snack, :breakfast_cal, :lunch_cal, :dinner_cal, :snack_cal)
+    params.require(:record).permit(:user_id, :breakfast, :lunch, :dinner, :snack, :breakfast_cal, :lunch_cal, :dinner_cal, :snack_cal)
   end
 end

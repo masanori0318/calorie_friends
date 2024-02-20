@@ -33,27 +33,6 @@
     <% end %>
     <!-- データの表示 -->
     <%= form_with(model: [@user || User.new, @record || Record.new], url: create_record_path, local: true) do |form| %>
-      <!-- Record -->
-      <div class="field">
-        <%= form.label :breakfast_img %>
-        <%= form.file_field :breakfast_img %>
-      </div>
-
-      <div class="field">
-        <%= form.label :lunch_img %>
-        <%= form.file_field :lunch_img %>
-      </div>
-
-      <div class="field">
-        <%= form.label :dinner_img %>
-        <%= form.file_field :dinner_img %>
-      </div>
-
-      <div class="field">
-        <%= form.label :snack_img %>
-        <%= form.file_field :snack_img %>
-      </div>
-      
       <!-- Meal -->
       <div class="field">
         <%= form.label :breakfast %>
