@@ -22,7 +22,10 @@
           <span>トップページ</span>
         </a>
       <% end %>
+      
     </span>
+    <!-- マイページへのリンク -->
+    <%= link_to 'User Profile', user_path(@user) %>
     <!-- シンプルカレンダーの日付をクリックして/show.html.erbに遷移 -->
     <%# シンプルカレンダーのループを作成して日付を表示 %>
     <%# day_record_pathを使用して/show.html.erbに遷移 %>

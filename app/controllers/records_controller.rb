@@ -71,6 +71,11 @@ class RecordsController < ApplicationController
       format.jpeg { head :not_found }
     end
   end
+  
+  def day_record
+    @user = current_user
+    # その他のコード
+  end
 
   private
 
