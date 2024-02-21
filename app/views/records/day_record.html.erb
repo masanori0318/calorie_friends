@@ -32,7 +32,7 @@
       </span>
     <% end %>
     <!-- データの表示 -->
-    <%= form_with(model: [@user || User.new, @record || Record.new], url: create_record_path, local: true) do |form| %>
+    <%= form_with(model: [@user || User.new, @record || Record.new], url: records_path, local: true) do |form| %>
       <!-- Meal -->
       <div class="field">
         <%= form.label :breakfast %>
