@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   resources :records, only: [:index, :new, :create, :show, :edit, :update, :destroy] # recordsにcreateアクションのみを追加
   post '/calculations/calculate_bmr', to: 'calculations#calculate_bmr'
   get 'home', to: 'records#home'
-  get 'day_record', to: 'records#day_record'
+  get 'day_record/:year/:month/:day', to: 'records#day_record', as: 'day_record'
   get '*path', to: 'records#not_found'
 end

@@ -26,7 +26,7 @@ class RecordsController < ApplicationController
     
     year = params[:year].to_i
     month = params[:month].to_i
-    day = params[:id].to_i
+    day = params[:id].to_i 
     begin
       date = Date.new(year, month, day)
       @record = Record.find_by(date: date)
@@ -34,6 +34,9 @@ class RecordsController < ApplicationController
         # レコードが見つからない場合の処理
         flash[:alert] = "Record for the specified date not found."
         #redirect_to root_path
+      else
+        # レコードが見つかった場合は、@dateに設定する
+        @date = date
       end
     rescue ArgumentError
       # 日付が無効な場合の処理
@@ -71,10 +74,9 @@ class RecordsController < ApplicationController
       format.jpeg { head :not_found }
     end
   end
-  
+
   def day_record
     @user = current_user
-    # その他のコード
   end
 
   private

@@ -1,4 +1,9 @@
 <% if @record.present? %>
+  <%# シンプルカレンダーの日付をクリックしたらその日付を表示 %>
+  <% if @date.present? %>
+    <h2>Selected Date</h2>
+    <p><%= @date.to_s %></p>
+  <% end %>
   <table>
     <thead>
       <tr>
@@ -7,6 +12,11 @@
         <th>Lunch</th>
         <th>Dinner</th>
         <th>Snack</th>
+        <th>Breakfast Cal</th>
+        <th>Lunch Cal</th>
+        <th>Dinner Cal</th>
+        <th>Snack Cal</th>
+        <th>Total Calories</th> <!-- 合計カロリーの表示 -->
         <!-- 他のヘッダー項目もここに追加 -->
       </tr>
     </thead>

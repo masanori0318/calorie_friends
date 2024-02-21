@@ -31,7 +31,7 @@
     <%# day_record_pathを使用して/show.html.erbに遷移 %>
     <%= month_calendar do |date| %>
       <span class="calendar-date" data-date="<%= date.to_s %>">
-        <%= link_to date.day, day_record_path(date: date) %>
+        <%= link_to date.day, user_path(@user, date: { year: date.year, month: date.month, day: date.day }) %>
       </span>
     <% end %>
     <!-- データの表示 -->
