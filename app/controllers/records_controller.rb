@@ -11,10 +11,15 @@ class RecordsController < ApplicationController
   end
 
   def create
+    # 日付情報を正しくパースしてセットする
+    year = params[:record].delete("date(1i)").to_i
+    month = params[:record].delete("date(2i)").to_i
+    day = params[:record].delete("date(3i)").to_i
+    params[:record][:date] = Date.new(year, month, day)
+  
     params[:record][:user_id] = current_user.id
     @record = Record.new(record_params)
-    @record.date = Date.today  # 今日の日付をセット
-
+  
     if @record.save
       redirect_to root_path, notice: "Record was successfully created."
     else
