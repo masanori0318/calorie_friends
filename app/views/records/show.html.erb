@@ -45,9 +45,5 @@
   </table>
 <% else %>
   <p>No record found for this date.</p>
-  <%= month_calendar do |date| %>
-      <span class="calendar-date" data-date="<%= date.to_s %>">
-        <%= link_to date.day, day_record_path(day: date.day, month: date.month, year: date.year) %>
-      </span>
-  <% end %>
+  <%= link_to "マイページ", user_path(current_user), class: "post" %>
 <% end %>
