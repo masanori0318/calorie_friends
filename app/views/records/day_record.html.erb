@@ -35,7 +35,14 @@
       </span>
     <% end %>
     <!-- データの表示 -->
-    <%= form_with(model: [@user || User.new, @record || Record.new], url: records_path, local: true) do |form| %>
+    <%= form_with(model: @record || Record.new, url: records_path, local: true) do |form| %>
+      <!-- Date -->
+      <div class="field">
+        <%= form.label :date, "Date" %>
+        <%= form.date_select :date %>
+      </div>
+     
+  
       <!-- Meal -->
       <div class="field">
         <%= form.label :breakfast %>
