@@ -1,0 +1,48 @@
+<h2>アカウント編集 <%= @user.class.model_name.human %></h2>
+
+<% if @confirmable_enabled && @user.pending_reconfirmation? %>
+  <div>Currently waiting confirmation for: <%= @user.unconfirmed_email %></div>
+<% end %>
+
+<%= form_for(@user, url: registration_path(@user), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: @user %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"現在のパスワード" %> <i>(変更を確認するには現在のパスワードが必要です)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+
+
+  <% if @confirmable_enabled && @user.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= @user.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :"新しいパスワード" %> <i>(変更したくない場合は空白のままにしてください)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"新しいパスワードの確認" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "変更する" %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<div>Unhappy? <%= button_to "Cancel my account", registration_path(@user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+
+<%= link_to "Back", :back %>

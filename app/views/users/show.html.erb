@@ -71,7 +71,7 @@
        </a>
     </span>
     <%= link_to '食事記録', day_record_path(day: Date.today.day, month: Date.today.month, year: Date.today.year) %>
-
+    <%= link_to 'ユーザー編集', edit_user_path(@user) %>
     <%= month_calendar do |date| %>
       <span class="calendar-date" data-date="<%= date.to_s %>">
         <%= link_to date.day, record_path(id: date.day, month: date.month, year: date.year) %>
