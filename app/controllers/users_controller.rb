@@ -1,21 +1,24 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :create]
+
+  def create
+    # createアクションのコードを追加
+  end
 
   def index
+    # indexアクションのコード
   end
 
   def new
+    # newアクションのコード
   end
 
   def edit
-    self.resource = resource_class.new
+    @user = current_user
     set_minimum_password_length
-    resource.reset_password_token = params[:reset_password_token]
   end
 
   def show
     @user = User.find(params[:id])
-    # @name = current_user.name
-    # @users = current_user.users
   end
 end

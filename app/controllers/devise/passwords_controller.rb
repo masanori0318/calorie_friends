@@ -18,10 +18,10 @@ class Devise::PasswordsController < DeviseController
   # パスワードリセットのためのフォームを表示するアクション
   def edit
     self.resource = resource_class.find_by(reset_password_token: params[:reset_password_token])
-    if resource.nil?
+    if resource.nil? || !resource.reset_password_period_valid?
       # リセットパスワードトークンが見つからない場合の処理
       flash[:alert] = "Invalid reset password token."
-      redirect_to edit_user_password_path
+      redirect_to new_user_password_path
     end
   end
 
