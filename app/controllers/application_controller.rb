@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
+  protected
+
+  def after_resetting_password_path_for(resource)
+    edit_user_password_path
+  end
 end
