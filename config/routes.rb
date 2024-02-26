@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   get 'home', to: 'records#home'
   get 'day_record/:year/:month/:day', to: 'records#day_record', as: 'day_record'
 
-  # パスワードリセット後のリダイレクトを変更
   devise_scope :user do
     get 'users/password/edit_custom', to: 'devise/passwords#edit', as: :edit_user_password_custom
     put 'users/password/update_custom', to: 'devise/passwords#update', as: :user_password_custom
+    put 'users/password/edit_custom', to: 'devise/passwords#update' # PUTメソッドに対応するルートを追加
   end
   
   get '*path', to: 'records#not_found'

@@ -1,6 +1,6 @@
 <h2>パスワードをお忘れですか?</h2>
 
-<%= form_for(resource, as: resource_name, url: user_password_custom_path, html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: edit_user_password_custom_path, html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
