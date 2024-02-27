@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'users/password/edit_custom', to: 'devise/passwords#edit', as: :edit_user_password_custom
     put 'users/password/update_custom', to: 'devise/passwords#update', as: :user_password_custom
     put 'users/password/edit_custom', to: 'devise/passwords#update' # PUTメソッドに対応するルートを追加
+    post 'users/password/reset_custom', to: 'devise/passwords#create', as: :user_password_reset_custom
   end
   
   get '*path', to: 'records#not_found'

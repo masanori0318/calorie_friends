@@ -51,4 +51,9 @@ class Devise::PasswordsController < DeviseController
   def after_resetting_password_path_for(resource)
     edit_user_password_path(resource_name)
   end
+
+  # パスワードリセット要求送信後の遷移先を指定するメソッド
+  def after_sending_reset_password_instructions_path_for(resource_name)
+    new_user_password_path if is_navigational_format?
+  end
 end
