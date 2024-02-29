@@ -18,12 +18,18 @@ class RecordsController < ApplicationController
     month = params[:record].delete("date(2i)").to_i
     day = params[:record].delete("date(3i)").to_i
     params[:record][:date] = Date.new(year, month, day)
-  
+
+    # パラメーターが空の場合にデフォルト値として0を代入
+    params[:record][:breakfast_cal] = 0 if params[:record][:breakfast_cal].blank?
+    params[:record][:lunch_cal] = 0 if params[:record][:lunch_cal].blank?
+    params[:record][:dinner_cal] = 0 if params[:record][:dinner_cal].blank?
+    params[:record][:snack_cal] = 0 if params[:record][:snack_cal].blank?
+
     params[:record][:user_id] = current_user.id
     @record = Record.new(record_params)
   
     if @record.save
-      redirect_to record_path(year: year, month: month, id: day), notice: "Record was successfully created."
+      redirect_to record_path(year: year, month: month, id: day), notice: "レコードは正常に保存されました。"
     else
       render :new
     end
@@ -54,7 +60,7 @@ class RecordsController < ApplicationController
     puts "Destroy action called!"
     @record = Record.find(params[:id])
     @record.destroy
-    redirect_to records_path, notice: 'Record was successfully destroyed.'
+    redirect_to records_path, notice: 'レコードは正常に消去されました。'
   end
 
   def edit

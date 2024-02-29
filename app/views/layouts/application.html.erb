@@ -18,7 +18,9 @@
          
       </div>
     </header>
-    
+    <% if flash[:notice].present? %>
+      <p><%= flash[:notice] %></p>
+    <% end %>
     <%= yield %>
     <footer class="footer_message">
       <p>
