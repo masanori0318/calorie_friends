@@ -22,16 +22,27 @@
     </thead>
     <tbody>
       <tr>
+        <p>Breakfast Image:</p>
+            <%= image_tag @record.breakfast_image.url if @record.breakfast_image.present? %>
+
+            <p>Lunch Image:</p>
+            <%= image_tag @record.lunch_image.url if @record.lunch_image.present? %>
+
+            <p>Dinner Image:</p>
+            <%= image_tag @record.dinner_image.url if @record.dinner_image.present? %>
+
+            <p>Snack Image:</p>
+            <%= image_tag @record.snack_image.url if @record.snack_image.present? %>
         <td><%= @record.user.name %></td>
         <td><%= @record.breakfast %></td>
         <td><%= @record.lunch %></td>
         <td><%= @record.dinner %></td>
         <td><%= @record.snack %></td>
-        <td><%= @record.breakfast_cal %></td>
-        <td><%= @record.lunch_cal %></td>
-        <td><%= @record.dinner_cal %></td>
-        <td><%= @record.snack_cal %></td>     
-        <td><%= @record.breakfast_cal + @record.lunch_cal + @record.dinner_cal + @record.snack_cal %></td> <!-- 合計カロリーの表示 -->
+        <td><%= @record.breakfast_cal || 0 %></td>
+        <td><%= @record.lunch_cal || 0 %></td>
+        <td><%= @record.dinner_cal || 0 %></td>
+        <td><%= @record.snack_cal || 0 %></td>
+        <td><%= (@record.breakfast_cal || 0) + (@record.lunch_cal || 0) + (@record.dinner_cal || 0) + (@record.snack_cal || 0) %></td>
         <!-- 他のカラムも追加 -->
         
         <!-- 他のデータ項目もここに追加 -->

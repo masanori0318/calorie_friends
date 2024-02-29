@@ -11,7 +11,27 @@
     </div>
   <% end %>
 
-    
+      <!-- 画像のアップロード -->
+      <div class="field">
+        <%= form.label :breakfast_image, "Breakfast Image" %>
+        <%= form.file_field :breakfast_image %>
+      </div>
+
+      <div class="field">
+        <%= form.label :lunch_image, "Lunch Image" %>
+        <%= form.file_field :lunch_image %>
+      </div>
+
+      <div class="field">
+        <%= form.label :dinner_image, "Dinner Image" %>
+        <%= form.file_field :dinner_image %>
+      </div>
+
+      <div class="field">
+        <%= form.label :snack_image, "Snack Image" %>
+        <%= form.file_field :snack_image %>
+      </div>
+      
       <!-- Meal -->
       <div class="field">
         <%= form.label :breakfast %>

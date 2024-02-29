@@ -21,7 +21,7 @@ class RecordsController < ApplicationController
     @record = Record.new(record_params)
   
     if @record.save
-      redirect_to root_path, notice: "Record was successfully created."
+      redirect_to record_path(year: year, month: month, id: day), notice: "Record was successfully created."
     else
       render :new
     end
@@ -47,6 +47,7 @@ class RecordsController < ApplicationController
       # 日付が無効な場合の処理
       flash[:alert] = "Invalid date provided."
       #redirect_to root_path
+      
     end
   end
 
@@ -67,7 +68,10 @@ class RecordsController < ApplicationController
     @record = Record.find(params[:id])
   
     if @record.update(record_params)
-      redirect_to @record, notice: 'Record was successfully updated.'
+      flash[:notice] = "編集できました"
+       # 更新後に@recordを再度取得し直す
+      @record = Record.find(params[:id])
+      redirect_to @record
     else
       render :edit
     end
@@ -91,6 +95,6 @@ class RecordsController < ApplicationController
   end
 
   def record_params
-    params.require(:record).permit(:user_id, :breakfast, :lunch, :dinner, :snack, :breakfast_cal, :lunch_cal, :dinner_cal, :snack_cal, :date)
+    params.require(:record).permit(:user_id, :breakfast, :lunch, :dinner, :snack, :breakfast_cal, :lunch_cal, :dinner_cal, :snack_cal, :date, :breakfast_image, :lunch_image, :dinner_image, :snack_image)
   end
 end
