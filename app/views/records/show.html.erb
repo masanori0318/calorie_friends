@@ -49,7 +49,7 @@
         <td>
           <%= link_to 'Show', user_path(@record.user) %>
           <%= link_to 'Edit', edit_record_path(@record) %>
-          <%= link_to 'Destroy', record_path(@record), data: { confirm: 'Are you sure?', turbo_method: :delete } %>
+          <%= button_to 'Destroy', record_path(@record), method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy-button' %>
           
         </td>
       </tr>
