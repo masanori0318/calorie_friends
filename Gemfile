@@ -79,3 +79,6 @@ gem 'rails-i18n'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'carrierwave', '~> 2.0'
+
+gem 'letter_opener_web'
+gem 'config'

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  #devise_for :users
   devise_for :users, controllers: { passwords: 'devise/passwords' }
   root to: "users#index"
   resources :users, only: [:new, :create, :edit, :update, :show, :destroy]
