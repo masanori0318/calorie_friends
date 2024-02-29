@@ -1,4 +1,6 @@
 class RecordsController < ApplicationController
+  before_action :authenticate_user! # ユーザーがログインしているか確認
+
   def index
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     @records = Record.where(date: @date.beginning_of_month..@date.end_of_month)
@@ -28,26 +30,21 @@ class RecordsController < ApplicationController
   end
 
   def show
-    
     year = params[:year].to_i
     month = params[:month].to_i
     day = params[:id].to_i 
+  
     begin
-      date = Date.new(year, month, day)
-      @record = Record.find_by(date: date)
+      @date = Date.new(year, month, day)
+      @record = current_user.records.find_by(date: @date)
+      
       if @record.nil?
-        # レコードが見つからない場合の処理
         flash[:alert] = "Record for the specified date not found."
         #redirect_to root_path
-      else
-        # レコードが見つかった場合は、@dateに設定する
-        @date = date
       end
     rescue ArgumentError
-      # 日付が無効な場合の処理
       flash[:alert] = "Invalid date provided."
       #redirect_to root_path
-      
     end
   end
 
