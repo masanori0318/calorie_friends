@@ -7,32 +7,33 @@
   <table>
     <thead>
       <tr>
-        <th>User</th>
-        <th>Breakfast</th>
-        <th>Lunch</th>
-        <th>Dinner</th>
-        <th>Snack</th>
-        <th>Breakfast Cal</th>
-        <th>Lunch Cal</th>
-        <th>Dinner Cal</th>
-        <th>Snack Cal</th>
-        <th>Total Calories</th> <!-- 合計カロリーの表示 -->
+        <th>お名前</th>
+        <th>朝食</th>
+        <th>昼食</th>
+        <th>夕食</th>
+        <th>間食</th>
+        <th>朝食 Cal</th>
+        <th>昼食 Cal</th>
+        <th>夕食 Cal</th>
+        <th>間食 Cal</th>
+        <th>合計カロリー数</th> <!-- 合計カロリーの表示 -->
         <!-- 他のヘッダー項目もここに追加 -->
       </tr>
     </thead>
     <tbody>
       <tr>
-        <p>Breakfast Image:</p>
-            <%= image_tag @record.breakfast_image.url if @record.breakfast_image.present? %>
+        <p>朝食:</p>
+            <%= image_tag @record.breakfast_image.url if @record.breakfast_image.present? %>          
 
-            <p>Lunch Image:</p>
+        <p>昼食:</p>
             <%= image_tag @record.lunch_image.url if @record.lunch_image.present? %>
 
-            <p>Dinner Image:</p>
+        <p>夕食:</p>
             <%= image_tag @record.dinner_image.url if @record.dinner_image.present? %>
 
-            <p>Snack Image:</p>
-            <%= image_tag @record.snack_image.url if @record.snack_image.present? %>
+        <p>間食:</p>
+            <%= image_tag @record.snack_image.url if @record.snack_image.present? %>  
+
         <td><%= @record.user.name %></td>
         <td><%= @record.breakfast %></td>
         <td><%= @record.lunch %></td>
