@@ -25,7 +25,7 @@
       
     </span>
     <!-- マイページへのリンク -->
-    <%= link_to 'User Profile', user_path(@user) %>
+    <%= link_to 'マイページ', user_path(@user) %>
     <!-- シンプルカレンダーの日付をクリックして/show.html.erbに遷移 -->
     <%# シンプルカレンダーのループを作成して日付を表示 %>
     <%# day_record_pathを使用して/show.html.erbに遷移 %>
@@ -38,70 +38,70 @@
     <%= form_with(model: @record || Record.new, url: records_path, local: true) do |form| %>
       <!-- Date -->
       <div class="field">
-        <%= form.label :date, "Date" %>
+        <%= form.label :date, "保存したい日付" %>
         <%= form.date_select :date %>
       </div>
      
       <!-- 画像のアップロード -->
       <div class="field">
-        <%= form.label :breakfast_image, "Breakfast Image" %>
+        <%= form.label :breakfast_image, "朝食の画像" %>
         <%= form.file_field :breakfast_image %>
       </div>
 
       <div class="field">
-        <%= form.label :lunch_image, "Lunch Image" %>
+        <%= form.label :lunch_image, "昼食の画像" %>
         <%= form.file_field :lunch_image %>
       </div>
 
       <div class="field">
-        <%= form.label :dinner_image, "Dinner Image" %>
+        <%= form.label :dinner_image, "夕食の画像" %>
         <%= form.file_field :dinner_image %>
       </div>
 
       <div class="field">
-        <%= form.label :snack_image, "Snack Image" %>
+        <%= form.label :snack_image, "間食の画像" %>
         <%= form.file_field :snack_image %>
       </div>
       
       <!-- Meal -->
       <div class="field">
-        <%= form.label :breakfast %>
+        <%= form.label :朝食 %>
         <%= form.text_field :breakfast %>
       </div>
 
       <div class="field">
-        <%= form.label :lunch %>
+        <%= form.label :昼食 %>
         <%= form.text_field :lunch %>
       </div>
 
       <div class="field">
-        <%= form.label :dinner %>
+        <%= form.label :夕食 %>
         <%= form.text_field :dinner %>
       </div>
 
       <div class="field">
-        <%= form.label :snack %>
+        <%= form.label :間食 %>
         <%= form.text_field :snack %>
       </div>
 
       <!-- Calories -->
       <div class="field">
-        <%= form.label :breakfast_cal %>
+        <%= form.label :朝食のカロリー %>
         <%= form.number_field :breakfast_cal %>
       </div>
 
       <div class="field">
-        <%= form.label :lunch_cal %>
+        <%= form.label :昼食のカロリー %>
         <%= form.number_field :lunch_cal %>
       </div>
 
       <div class="field">
-        <%= form.label :dinner_cal %>
+        <%= form.label :夕食のカロリー %>
         <%= form.number_field :dinner_cal %>
       </div>
 
       <div class="field">
-        <%= form.label :snack_cal %>
+        <%= form.label :間食のカロリー %>
         <%= form.number_field :snack_cal %>
       </div>
 
