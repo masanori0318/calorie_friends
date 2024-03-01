@@ -45,11 +45,11 @@ class RecordsController < ApplicationController
       @record = current_user.records.find_by(date: @date)
       
       if @record.nil?
-        flash[:alert] = "Record for the specified date not found."
+        flash.now[:notice] = "登録された情報がありません。"
         #redirect_to root_path
       end
     rescue ArgumentError
-      flash[:alert] = "Invalid date provided."
+      flash.now[:alert] = "無効な日付が指定されました。"
       #redirect_to root_path
     end
   end
