@@ -2,3 +2,8 @@ ja:
   simple_calendar:
     previous: "<<"
     next: ">>"
+
+  devise:
+    sessions:
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
