@@ -1,5 +1,6 @@
 <% if @record.present? %>
   <%# シンプルカレンダーの日付をクリックしたらその日付を表示 %>
+  <%= link_to "マイページ", user_path(current_user), class: "post" %>
   <% if @date.present? %>
     <p>選択された日付</p>
     <h2><%= @date.to_s %></h2>

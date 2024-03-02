@@ -1,3 +1,6 @@
 body {
-  background-image: url( '1610079_m.jpg');
+  background-image: url('1610079_m.jpg');
+}
+a {
+  text-decoration-line: none;
 }
