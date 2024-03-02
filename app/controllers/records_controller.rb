@@ -1,6 +1,5 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user! # ユーザーがログインしているか確認
-
   def index
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     @records = Record.where(date: @date.beginning_of_month..@date.end_of_month)
