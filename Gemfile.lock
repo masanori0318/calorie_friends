@@ -144,6 +144,13 @@ GEM
       dry-schema (>= 1.12, < 2)
       zeitwerk (~> 2.6)
     erubi (1.12.0)
+    factory_bot (6.4.6)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
+    faker (3.2.3)
+      i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -363,6 +370,8 @@ DEPENDENCIES
   config
   debug
   devise
+  factory_bot_rails
+  faker
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
