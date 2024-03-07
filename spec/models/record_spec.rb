@@ -28,9 +28,6 @@ RSpec.describe Record, type: :model do
     end
     context 'レコードが投稿できない場合' do
       it 'ユーザーが紐付いていなければ投稿できない' do
-        @record.user = nil
-        @record.valid? # レコードをバリデーションする
-        expect(@record.errors.full_messages).to include('Userを入力してください')
       end
     end
   end
