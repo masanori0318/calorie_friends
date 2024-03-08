@@ -1,6 +1,23 @@
 body {
-  background-image: url('1610079_m.jpg');
+  background-image: url('24880342.jpg');
+  background-size: cover;
 }
 a {
   text-decoration-line: none;
+}
+.grid-6 {
+  font-size: 100px;
+  font-weight: bold;
+  color: black;
+}
+
+.calculations_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.calculations {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
