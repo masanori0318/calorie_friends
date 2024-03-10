@@ -89,3 +89,7 @@ gem 'carrierwave', '~> 2.0'
 
 gem 'letter_opener_web'
 gem 'config'
+
+gem "dockerfile-rails", ">= 1.6", :group => :development
+
+gem "redis", "~> 5.1"
