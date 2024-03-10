@@ -48,8 +48,16 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
+#production:
+  #<<: *default
+  #database: calorie_friends_production
+  #username: calorie_friends
+  #password: <%= ENV["CALORIE_FRIENDS_DATABASE_PASSWORD"] %>
+
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: calorie_friends_production
   username: calorie_friends
   password: <%= ENV["CALORIE_FRIENDS_DATABASE_PASSWORD"] %>
