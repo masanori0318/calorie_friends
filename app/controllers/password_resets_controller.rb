@@ -1,14 +1,15 @@
 class PasswordResetsController < ApplicationController
   skip_before_action :require_login
 
-  def new; end
+  def new
+  end
 
   def create
     @user = User.find_by(email: params[:email])
     @user&.deliver_reset_password_instructions!
     # ↓「存在しないメールアドレスです」という旨の文言を表示すると、逆に存在するメールアドレスを特定されてしまうため
-    #　　↓あえて成功時のメッセージを送信させている
-    redirect_to login_path, success: "メールを送信しました。"
+    # 　　↓あえて成功時のメッセージを送信させている
+    redirect_to login_path, success: 'メールを送信しました。'
   end
 
   def edit
@@ -25,9 +26,9 @@ class PasswordResetsController < ApplicationController
 
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.change_password(params[:user][:password])
-      redirect_to login_path, success: "パスワードを変更できました"
+      redirect_to login_path, success: 'パスワードを変更できました'
     else
-      flash.now[:danger] = "パスワード変更出来ませんでした"
+      flash.now[:danger] = 'パスワード変更出来ませんでした'
       render :edit
     end
   end

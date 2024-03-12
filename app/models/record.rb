@@ -17,7 +17,8 @@ class Record < ApplicationRecord
   def self.search(search)
     if search.present?
       # 検索対象のカラムを指定する
-      Record.where('breakfast LIKE(?) OR lunch LIKE(?) OR dinner LIKE(?) OR snack LIKE(?)', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+      Record.where('breakfast LIKE(?) OR lunch LIKE(?) OR dinner LIKE(?) OR snack LIKE(?)', "%#{search}%", "%#{search}%",
+                   "%#{search}%", "%#{search}%")
     else
       Record.all
     end

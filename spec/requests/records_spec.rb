@@ -9,14 +9,13 @@ RSpec.describe RecordsController, type: :request do
     sign_in user
   end
 
-  describe "GET #index" do
-    it "indexアクションに正常なレスポンスを返すこと" do
+  describe 'GET #index' do
+    it 'indexアクションに正常なレスポンスを返すこと' do
       get records_path
       expect(response.status).to eq 200
     end
-    
-    it "indexアクションにリクエストするとレスポンスに投稿済みのレコード情報が存在する" do
-      
+
+    it 'indexアクションにリクエストするとレスポンスに投稿済みのレコード情報が存在する' do
     end
   end
 end

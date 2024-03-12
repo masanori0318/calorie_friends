@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Record, type: :model do
   before do
-    
     @user = User.create(name: 'Test User', email: 'test@example.com', password: 'password')
-    @record = Record.new(user: @user, breakfast: 'Eggs', lunch: 'Salad', dinner: 'Chicken', snack: 'Apple', breakfast_cal: 300, lunch_cal: 200, dinner_cal: 400, snack_cal: 100)
+    @record = Record.new(user: @user, breakfast: 'Eggs', lunch: 'Salad', dinner: 'Chicken', snack: 'Apple', breakfast_cal: 300,
+                         lunch_cal: 200, dinner_cal: 400, snack_cal: 100)
   end
 
   describe 'レコードの保存' do

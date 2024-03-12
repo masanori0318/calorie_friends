@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
+
   def set_minimum_password_length
     @minimum_password_length = User.password_length.min
   end

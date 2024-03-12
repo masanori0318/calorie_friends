@@ -13,9 +13,9 @@ class RecordsController < ApplicationController
 
   def create
     # 日付情報を正しくパースしてセットする
-    year = params[:record].delete("date(1i)").to_i
-    month = params[:record].delete("date(2i)").to_i
-    day = params[:record].delete("date(3i)").to_i
+    year = params[:record].delete('date(1i)').to_i
+    month = params[:record].delete('date(2i)').to_i
+    day = params[:record].delete('date(3i)').to_i
     params[:record][:date] = Date.new(year, month, day)
 
     # パラメーターが空の場合にデフォルト値として0を代入
@@ -26,9 +26,9 @@ class RecordsController < ApplicationController
 
     params[:record][:user_id] = current_user.id
     @record = Record.new(record_params)
-  
+
     if @record.save
-      redirect_to record_path(year: year, month: month, id: day), notice: "レコードは正常に保存されました。"
+      redirect_to record_path(year:, month:, id: day), notice: 'レコードは正常に保存されました。'
     else
       render :new
     end
@@ -37,26 +37,24 @@ class RecordsController < ApplicationController
   def show
     year = params[:year].to_i
     month = params[:month].to_i
-    day = params[:id].to_i 
-  
+    day = params[:id].to_i
+
     begin
       @date = Date.new(year, month, day)
       @record = current_user.records.find_by(date: @date)
-      
+
       if @record.nil?
-        flash.now[:notice] = "登録された情報がありません。"
-        #redirect_to root_path
+        flash.now[:notice] = '登録された情報がありません。'
+        # redirect_to root_path
       end
     rescue ArgumentError
-      flash.now[:alert] = "無効な日付が指定されました。"
-      #redirect_to root_path
+      flash.now[:alert] = '無効な日付が指定されました。'
+      # redirect_to root_path
     end
   end
 
-  
-
   def destroy
-    puts "Destroy action called!"
+    puts 'Destroy action called!'
     @record = Record.find(params[:id])
     @record.destroy
     redirect_to records_path, notice: 'レコードは正常に消去されました。'
@@ -64,14 +62,14 @@ class RecordsController < ApplicationController
 
   def edit
     @record = Record.find(params[:id])
-  end  
-  
+  end
+
   def update
     @record = Record.find(params[:id])
-  
+
     if @record.update(record_params)
-      flash[:notice] = "編集できました"
-       # 更新後に@recordを再度取得し直す
+      flash[:notice] = '編集できました'
+      # 更新後に@recordを再度取得し直す
       @record = Record.find(params[:id])
       redirect_to @record
     else
@@ -97,6 +95,7 @@ class RecordsController < ApplicationController
   end
 
   def record_params
-    params.require(:record).permit(:user_id, :breakfast, :lunch, :dinner, :snack, :breakfast_cal, :lunch_cal, :dinner_cal, :snack_cal, :date, :breakfast_image, :lunch_image, :dinner_image, :snack_image)
+    params.require(:record).permit(:user_id, :breakfast, :lunch, :dinner, :snack, :breakfast_cal, :lunch_cal, :dinner_cal,
+                                   :snack_cal, :date, :breakfast_image, :lunch_image, :dinner_image, :snack_image)
   end
 end
