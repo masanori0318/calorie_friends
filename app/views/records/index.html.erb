@@ -28,9 +28,9 @@
             <td><%= record.dinner %></td>
             <td><%= record.snack %></td>
             <!-- 他の属性に関するセルを追加 -->
-            <td><%= link_to 'Show', record %></td>
-            <td><%= link_to 'Edit', edit_record_path(record) %></td>
-            <td><%= link_to 'Delete', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to '詳細', record %></td>
+            <td><%= link_to '編集', edit_record_path(record) %></td>
+            <td><%= link_to '削除', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>
@@ -39,6 +39,6 @@
     <p>No records found.</p>
   <% end %>
 
-  <%= link_to 'New Record', new_record_path %>
+  <%= link_to '新規レコード', new_record_path %>
 </body>
 </html>
