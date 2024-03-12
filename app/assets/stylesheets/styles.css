@@ -21,3 +21,15 @@ a {
   justify-content: center;
   align-items: center;
 }
+
+.logout_mypage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_sign-up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
